@@ -3,11 +3,12 @@ module FluentECS
     include Resource
     self.resource_endpoint = '/tasks'
 
-    attr_accessor :arn,    :container_instance, :desired_status,
-                  :family, :known_status,       :version
+    attr_accessor :arn,    :id,           :container_instance, :desired_status,
+                  :family, :known_status, :version
 
     def initialize(attrs = {})
       @arn            = attrs['Arn']
+      @id             = attrs['Arn'].split('/').last
       @desired_status = attrs['DesiredStatus']
       @family         = attrs['Family']
       @known_status   = attrs['KnownStatus']
